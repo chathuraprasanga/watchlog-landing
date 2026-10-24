@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Privacy Policy — WatchLog</title>
+  <meta name="description" content="WatchLog privacy policy: what we collect, how we use it, and your rights." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --yellow: #F5C518;
+      --bg: #0F0F0F;
+      --surface: #1A1A1A;
+      --border: #2A2A2A;
+      --text: #FFFFFF;
+      --muted: #9CA3AF;
+      --radius: 12px;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+    }
+
+    a { color: var(--yellow); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    /* NAV */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(15,15,15,0.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-inner {
+      max-width: 1040px;
+      margin: 0 auto;
+      padding: 0 24px;
+      height: 60px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .nav-logo img { height: 32px; display: block; }
+    .nav-links {
+      display: flex;
+      gap: 28px;
+      list-style: none;
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--muted);
+    }
+    .nav-links a { color: var(--muted); }
+    .nav-links a:hover { color: var(--text); text-decoration: none; }
+
+    /* PAGE HEADER */
+    .page-header {
+      padding: 64px 24px 48px;
+      max-width: 720px;
+      margin: 0 auto;
+    }
+    .page-header .eyebrow {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 1.8px;
+      text-transform: uppercase;
+      color: var(--yellow);
+      margin-bottom: 14px;
+      display: block;
+    }
+    .page-header h1 {
+      font-size: clamp(28px, 5vw, 42px);
+      font-weight: 900;
+      letter-spacing: -1px;
+      margin-bottom: 12px;
+    }
+    .page-header .updated {
+      font-size: 14px;
+      color: var(--muted);
+    }
+
+    /* CONTENT */
+    .content {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 0 24px 80px;
+    }
+    .intro {
+      font-size: 16px;
+      color: var(--muted);
+      margin-bottom: 48px;
+      padding-bottom: 36px;
+      border-bottom: 1px solid var(--border);
+      line-height: 1.7;
+    }
+
+    .section {
+      margin-bottom: 40px;
+      padding-bottom: 40px;
+      border-bottom: 1px solid var(--border);
+    }
+    .section:last-child { border-bottom: none; }
+
+    .section h2 {
+      font-size: 18px;
+      font-weight: 800;
+      letter-spacing: -0.3px;
+      color: var(--yellow);
+      margin-bottom: 14px;
+    }
+    .section h3 {
+      font-size: 15px;
+      font-weight: 700;
+      margin: 20px 0 8px;
+      color: var(--text);
+    }
+    .section p {
+      font-size: 15px;
+      color: var(--muted);
+      margin-bottom: 12px;
+    }
+    .section ul {
+      list-style: none;
+      margin: 8px 0;
+    }
+    .section ul li {
+      font-size: 15px;
+      color: var(--muted);
+      padding: 5px 0 5px 18px;
+      position: relative;
+    }
+    .section ul li::before {
+      content: '–';
+      position: absolute;
+      left: 0;
+      color: var(--yellow);
+    }
+
+    /* PERMISSION TABLE */
+    .perm-list { margin: 0; }
+    .perm-item {
+      display: flex;
+      gap: 16px;
+      padding: 12px 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .perm-item:last-child { border-bottom: none; }
+    .perm-name {
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--text);
+      min-width: 140px;
+      flex-shrink: 0;
+    }
+    .perm-reason {
+      font-size: 14px;
+      color: var(--muted);
+    }
+
+    /* FOOTER */
+    footer {
+      padding: 48px 24px;
+      text-align: center;
+      border-top: 1px solid var(--border);
+    }
+    .footer-logo img {
+      height: 48px;
+      margin: 0 auto 16px;
+      display: block;
+      opacity: 0.7;
+    }
+    .footer-links {
+      display: flex;
+      gap: 20px;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-bottom: 16px;
+      font-size: 13px;
+    }
+    .footer-links a { color: var(--muted); }
+    .footer-links a:hover { color: var(--text); text-decoration: none; }
+    .footer-copy { font-size: 12px; color: #555; }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <div class="nav-inner">
+      <a class="nav-logo" href="index.html">
+        <img src="assets/images/watchlog-wordmark-dark.png" alt="WatchLog" />
+      </a>
+      <ul class="nav-links">
+        <li><a href="privacy.html">Privacy</a></li>
+        <li><a href="terms.html">Terms</a></li>
+        <li><a href="mailto:info@virstack.com">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- PAGE HEADER -->
+  <div class="page-header">
+    <span class="eyebrow">Legal</span>
+    <h1>Privacy Policy</h1>
+    <p class="updated">Last updated: 17 May 2026</p>
+  </div>
+
+  <!-- CONTENT -->
+  <div class="content">
+
+    <p class="intro">WatchLog ("we", "our", or "the app") is built and operated by Virstack. This policy explains what data we collect when you use the WatchLog mobile app, why we collect it, and what choices you have. We aim to collect as little as possible and never sell your data.</p>
+
+    <div class="section">
+      <h2>1. Who we are</h2>
+      <p>WatchLog is published by Virstack. If you have any questions about this policy or your data, contact us at <a href="mailto:info@virstack.com">info@virstack.com</a>.</p>
+    </div>
+
+    <div class="section">
+      <h2>2. Information we collect</h2>
+      <h3>2.1 Information you provide</h3>
+      <ul>
+        <li>Account details: name and email address when you sign up or log in.</li>
+        <li>Profile settings: display name, bio, genre and language preferences — used to personalise recommendations.</li>
+        <li>Profile photo: an optional avatar image you select from your device's photo library.</li>
+        <li>Watchlist data: the movies and TV shows you add, their status, ratings, and written reviews.</li>
+        <li>Episode progress: which seasons and episodes you have marked as watched, with timestamps.</li>
+      </ul>
+      <h3>2.2 Information collected automatically</h3>
+      <ul>
+        <li>App usage logs: timestamps of app opens stored locally to power viewing statistics and history charts.</li>
+        <li>Device information: basic technical details (OS version, app version, device language) sent with API requests for diagnostics.</li>
+        <li>Error diagnostics: crash reports and performance data collected by Sentry to help us identify and fix issues.</li>
+      </ul>
+    </div>
+
+    <div class="section">
+      <h2>3. Permissions we request</h2>
+      <div class="perm-list">
+        <div class="perm-item">
+          <span class="perm-name">Internet</span>
+          <span class="perm-reason">To fetch show and movie metadata from TMDB and to sync your watchlist and account to our backend.</span>
+        </div>
+        <div class="perm-item">
+          <span class="perm-name">Photo Library</span>
+          <span class="perm-reason">To let you choose an avatar image for your profile. We only access the specific photo you select — we do not browse or upload your full photo library.</span>
+        </div>
+        <div class="perm-item">
+          <span class="perm-name">Background processing</span>
+          <span class="perm-reason">To periodically sync airing show data in the background so your episode progress stays up to date when you open the app.</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="section">
+      <h2>4. How we use your information</h2>
+      <ul>
+        <li>To create and authenticate your account and keep you signed in.</li>
+        <li>To store and sync your watchlist, episode progress, ratings, and profile settings.</li>
+        <li>To generate personalised show and movie recommendations based on your genre and language preferences.</li>
+        <li>To display your watch history and viewing statistics within the app.</li>
+        <li>To diagnose crashes and improve the app's reliability via Sentry.</li>
+        <li>To comply with legal obligations.</li>
+      </ul>
+    </div>
+
+    <div class="section">
+      <h2>5. Data we do not collect</h2>
+      <ul>
+        <li>We do not sell your personal data.</li>
+        <li>We do not track your location.</li>
+        <li>We do not access your contacts or calendar.</li>
+        <li>We do not access your microphone or record audio.</li>
+        <li>We do not share your personal data with TMDB or any other content provider.</li>
+      </ul>
+    </div>
+
+    <div class="section">
+      <h2>6. Where your data lives</h2>
+      <p>Most of your data — watchlist entries, episode progress, ratings, and viewing logs — is stored locally on your device in an encrypted SQLite database. A copy of your account profile and watchlist may be synced to our backend so you can recover your data after reinstalling or signing in on another device. Backend data is transmitted over HTTPS and protected with industry-standard access controls.</p>
+    </div>
+
+    <div class="section">
+      <h2>7. TMDB integration</h2>
+      <p>WatchLog uses The Movie Database (TMDB) API to provide movie and TV show metadata, posters, cast information, and episode data. We send search queries and show identifiers to TMDB's servers to fetch this metadata. We do not share your personal data (name, email, or watchlist) with TMDB. This product uses the TMDB API but is not endorsed or certified by TMDB.</p>
+    </div>
+
+    <div class="section">
+      <h2>8. Third-party services</h2>
+      <ul>
+        <li><strong>The Movie Database (TMDB)</strong> — We send search queries and show/movie identifiers to TMDB's servers to fetch metadata, posters, and episode data. Your personal data is never shared with TMDB.</li>
+        <li><strong>Sentry</strong> — Receives crash reports and performance traces to help us diagnose issues. Reports include device details and app state at the time of the error, but no watchlist content or account credentials. <a href="https://sentry.io/privacy/" target="_blank" rel="noopener">Privacy policy</a>.</li>
+      </ul>
+    </div>
+
+    <div class="section">
+      <h2>9. Data retention &amp; deletion</h2>
+      <p>We keep your account and synced data while your account is active. You may:</p>
+      <ul>
+        <li>Delete individual watchlist entries from inside the app.</li>
+        <li>Reset all local data via Profile → Reset data.</li>
+        <li>Request full account deletion by emailing <a href="mailto:info@virstack.com">info@virstack.com</a>. We will delete your server-side data within 30 days.</li>
+      </ul>
+    </div>
+
+    <div class="section">
+      <h2>10. Your rights</h2>
+      <p>Depending on where you live, you may have the right to access, correct, export, or delete the personal data we hold about you, and to object to or restrict certain processing. To exercise these rights, contact us at <a href="mailto:info@virstack.com">info@virstack.com</a>. We will respond within a reasonable timeframe.</p>
+    </div>
+
+    <div class="section">
+      <h2>11. Children's privacy</h2>
+      <p>WatchLog is not intended for children under 13. We do not knowingly collect personal data from children under 13. If you believe a child has provided us with personal data, please contact us and we will delete it.</p>
+    </div>
+
+    <div class="section">
+      <h2>12. Security</h2>
+      <p>We use industry-standard measures — TLS in transit, bcrypt-hashed credentials, and access controls on our backend — to protect your data. No system is perfectly secure, so we encourage you to use a strong, unique password and keep your device protected.</p>
+    </div>
+
+    <div class="section">
+      <h2>13. International transfers</h2>
+      <p>Your data may be processed on servers located outside your country of residence. By using WatchLog you consent to this transfer, which is performed under appropriate safeguards.</p>
+    </div>
+
+    <div class="section">
+      <h2>14. Changes &amp; contact</h2>
+      <p>We may update this policy from time to time. When we do, we will revise the Last updated date at the top and, if changes are material, notify you in-app. Continued use of WatchLog after a change indicates acceptance of the updated policy.</p>
+      <p>Questions, requests, or concerns? Email <a href="mailto:info@virstack.com">info@virstack.com</a>.</p>
+    </div>
+
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-logo">
+      <img src="assets/images/watchlog-wordmark-dark.png" alt="WatchLog" />
+    </div>
+    <div class="footer-links">
+      <a href="index.html">Home</a>
+      <a href="privacy.html">Privacy Policy</a>
+      <a href="terms.html">Terms of Service</a>
+      <a href="mailto:info@virstack.com">info@virstack.com</a>
+    </div>
+    <p class="footer-copy">© 2026 Virstack · WatchLog</p>
+  </footer>
+
+</body>
+</html>

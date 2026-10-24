@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>WatchLog — Track every show. Never lose your place.</title>
+  <meta name="description" content="WatchLog is a privacy-friendly movie and TV show tracker with episode-level progress, ratings, personalized recommendations, and cross-device sync." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --yellow: #F5C518;
+      --yellow-soft: rgba(245,197,24,0.12);
+      --bg: #0F0F0F;
+      --surface: #1A1A1A;
+      --border: #2A2A2A;
+      --text: #FFFFFF;
+      --muted: #9CA3AF;
+      --radius: 12px;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    a { color: var(--yellow); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    /* NAV */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(15,15,15,0.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-inner {
+      max-width: 1040px;
+      margin: 0 auto;
+      padding: 0 24px;
+      height: 60px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .nav-logo img {
+      height: 48px;
+      display: block;
+    }
+    .nav-links {
+      display: flex;
+      gap: 28px;
+      list-style: none;
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--muted);
+    }
+    .nav-links a { color: var(--muted); }
+    .nav-links a:hover { color: var(--text); text-decoration: none; }
+
+    /* CONTAINER */
+    .container {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* HERO */
+    .hero {
+      padding: 96px 24px 80px;
+      max-width: 720px;
+      margin: 0 auto;
+      text-align: center;
+    }
+    .hero-eyebrow {
+      display: inline-block;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 1.8px;
+      text-transform: uppercase;
+      color: var(--yellow);
+      margin-bottom: 20px;
+    }
+    .hero h1 {
+      font-size: clamp(36px, 6vw, 58px);
+      font-weight: 900;
+      line-height: 1.08;
+      letter-spacing: -1.5px;
+      margin-bottom: 22px;
+    }
+    .hero h1 span { color: var(--yellow); }
+    .hero p {
+      font-size: 18px;
+      color: var(--muted);
+      max-width: 540px;
+      margin: 0 auto 32px;
+      line-height: 1.65;
+    }
+    .badges {
+      display: flex;
+      gap: 10px;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-bottom: 40px;
+    }
+    .badge {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 100px;
+      padding: 6px 16px;
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--muted);
+    }
+    .store-buttons {
+      display: flex;
+      gap: 14px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    .store-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: var(--yellow);
+      color: #0F1115;
+      border-radius: 10px;
+      padding: 12px 22px;
+      font-size: 14px;
+      font-weight: 700;
+      transition: opacity .15s;
+    }
+    .store-btn:hover { opacity: .85; text-decoration: none; }
+    .store-btn img { flex-shrink: 0; width: 18px; height: 18px; }
+    .store-btn-secondary img { filter: brightness(0) invert(1); }
+    .store-btn-secondary {
+      background: var(--surface);
+      color: var(--text);
+      border: 1px solid var(--border);
+    }
+    .store-btn-secondary:hover { border-color: var(--yellow); }
+
+    /* FEATURES */
+    .features {
+      padding: 20px 24px 80px;
+    }
+    .section-label {
+      text-align: center;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 1.8px;
+      text-transform: uppercase;
+      color: var(--yellow);
+      margin-bottom: 12px;
+    }
+    .section-title {
+      text-align: center;
+      font-size: clamp(24px, 4vw, 32px);
+      font-weight: 800;
+      letter-spacing: -0.6px;
+      margin-bottom: 48px;
+    }
+    .features-grid {
+      max-width: 860px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 18px;
+    }
+    .feature-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-left: 3px solid var(--yellow);
+      border-radius: var(--radius);
+      padding: 24px;
+    }
+    .feature-card h3 {
+      font-size: 16px;
+      font-weight: 700;
+      margin-bottom: 8px;
+      letter-spacing: -0.2px;
+    }
+    .feature-card p {
+      font-size: 14px;
+      color: var(--muted);
+      line-height: 1.6;
+    }
+
+    /* TMDB */
+    .tmdb-section {
+      padding: 48px 24px;
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+    .tmdb-inner {
+      max-width: 680px;
+      margin: 0 auto;
+      display: flex;
+      align-items: flex-start;
+      gap: 20px;
+    }
+    .tmdb-logo {
+      flex-shrink: 0;
+      width: 52px;
+      height: 52px;
+      background: #01B4E4;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 12px;
+      font-weight: 900;
+      color: #fff;
+      letter-spacing: -0.5px;
+    }
+    .tmdb-text h3 {
+      font-size: 15px;
+      font-weight: 700;
+      margin-bottom: 6px;
+    }
+    .tmdb-text p {
+      font-size: 14px;
+      color: var(--muted);
+      line-height: 1.6;
+    }
+
+    /* FOOTER */
+    footer {
+      padding: 48px 24px;
+      text-align: center;
+    }
+    .footer-logo img {
+      height: 48px;
+      margin: 0 auto 16px;
+      display: block;
+      opacity: 0.7;
+    }
+    .footer-tagline {
+      font-size: 14px;
+      color: var(--muted);
+      margin-bottom: 16px;
+    }
+    .footer-links {
+      display: flex;
+      gap: 20px;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-bottom: 20px;
+      font-size: 13px;
+    }
+    .footer-links a { color: var(--muted); }
+    .footer-links a:hover { color: var(--text); text-decoration: none; }
+    .footer-copy {
+      font-size: 12px;
+      color: #555;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <div class="nav-inner">
+      <a class="nav-logo" href="index.html">
+        <img src="assets/images/watchlog-wordmark-dark.png" alt="WatchLog" />
+      </a>
+      <ul class="nav-links">
+        <li><a href="privacy.html">Privacy</a></li>
+        <li><a href="terms.html">Terms</a></li>
+        <li><a href="mailto:info@virstack.com">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <span class="hero-eyebrow">Movies &amp; TV Shows</span>
+    <h1>Track every show.<br /><span>Never lose your place.</span></h1>
+    <p>WatchLog lets you log movies and TV shows, track episodes, rate what you watch, and discover what to watch next — all without ads or selling your data.</p>
+    <div class="badges">
+      <span class="badge">Free to start</span>
+      <span class="badge">Privacy-first</span>
+    </div>
+    <div class="store-buttons">
+      <a href="#" class="store-btn">
+        <img src="assets/images/apple-logo-svgrepo-com.svg" alt="" />
+        App Store
+      </a>
+      <a href="#" class="store-btn store-btn-secondary">
+        <img src="assets/images/play-store-svgrepo-com.svg" alt="" />
+        Google Play
+      </a>
+    </div>
+  </section>
+
+  <!-- FEATURES -->
+  <section class="features">
+    <p class="section-label">Features</p>
+    <h2 class="section-title">Everything you need to track your watchlist</h2>
+    <div class="features-grid">
+      <div class="feature-card">
+        <h3>Watchlist management</h3>
+        <p>Organise titles into statuses — Watching, Completed, Plan to Watch, On Hold, or Dropped. Always know where you stand.</p>
+      </div>
+      <div class="feature-card">
+        <h3>Episode-level progress</h3>
+        <p>Track exactly which seasons and episodes you've seen for every TV show. Pick up right where you left off.</p>
+      </div>
+      <div class="feature-card">
+        <h3>Ratings &amp; reviews</h3>
+        <p>Score any title on a numeric scale and write a short review. Build a personal record of everything you've watched.</p>
+      </div>
+      <div class="feature-card">
+        <h3>Personalised recommendations</h3>
+        <p>Set your favourite genres and languages. WatchLog suggests titles matched to your taste, not a generic trending list.</p>
+      </div>
+      <div class="feature-card">
+        <h3>Watch history &amp; stats</h3>
+        <p>Timestamped viewing logs, progress percentages, and viewing statistics — see how much you've actually watched.</p>
+      </div>
+      <div class="feature-card">
+        <h3>Search &amp; discover</h3>
+        <p>Instantly search millions of movies and shows from the TMDB catalogue and browse what's trending right now.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- TMDB -->
+  <section class="tmdb-section">
+    <div class="tmdb-inner">
+      <div class="tmdb-logo">TMDB</div>
+      <div class="tmdb-text">
+        <h3>Powered by The Movie Database</h3>
+        <p>WatchLog uses the TMDB API to provide accurate metadata, posters, cast information, and episode data for millions of movies and TV shows. This product uses the TMDB API but is not endorsed or certified by TMDB.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-logo">
+      <img src="assets/images/watchlog-wordmark-dark.png" alt="WatchLog" />
+    </div>
+    <p class="footer-tagline">WatchLog is made by Virstack, an independent software studio.</p>
+    <div class="footer-links">
+      <a href="privacy.html">Privacy Policy</a>
+      <a href="terms.html">Terms of Service</a>
+      <a href="mailto:info@virstack.com">info@virstack.com</a>
+    </div>
+    <p class="footer-copy">© 2026 Virstack · WatchLog</p>
+  </footer>
+
+</body>
+</html>
