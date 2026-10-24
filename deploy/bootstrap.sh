@@ -38,7 +38,9 @@ fi
 
 echo "==> Requesting HTTPS certificate for ${DOMAIN}"
 echo "    (DNS A record for ${DOMAIN} must already point at this VPS)"
-certbot --nginx -d "${DOMAIN}"
+# --keep-until-expiring reinstalls a still-valid existing cert instead of
+# prompting (this script has no stdin to answer that prompt over SSH).
+certbot --nginx -d "${DOMAIN}" --non-interactive --agree-tos --register-unsafely-without-email --keep-until-expiring
 
 echo "==> Bootstrap complete."
 EOF
