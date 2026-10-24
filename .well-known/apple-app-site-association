@@ -1,0 +1,15 @@
+{
+  "applinks": {
+    "details": [
+      {
+        "appIDs": ["TEAMID.com.xcorpion.watchlog"],
+        "components": [
+          {
+            "/": "/share/*",
+            "comment": "Matches /share/movie/<id> and /share/tv/<id>"
+          }
+        ]
+      }
+    ]
+  }
+}

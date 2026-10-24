@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Opening in WatchLog…</title>
+<meta name="robots" content="noindex" />
+<style>
+  body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+         background: #fff; color: #111; display: flex; align-items: center; justify-content: center;
+         min-height: 100vh; margin: 0; text-align: center; padding: 24px; }
+  .wrap { max-width: 360px; }
+  h1 { font-size: 18px; margin: 0 0 8px; }
+  p { font-size: 14px; color: #666; margin: 0 0 20px; }
+  a.btn { display: inline-block; background: #F5C518; color: #111; font-weight: 700;
+          padding: 12px 20px; border-radius: 10px; text-decoration: none; }
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <h1>Opening on TMDB…</h1>
+    <p>If you have WatchLog installed, this link should have opened there instead.</p>
+    <a class="btn" id="fallback-link" href="https://www.themoviedb.org">Continue to TMDB</a>
+  </div>
+  <script>
+    // Path looks like /share/movie/603692 or /share/tv/1399.
+    var parts = window.location.pathname.split('/').filter(Boolean);
+    var shareIndex = parts.indexOf('share');
+    var type = shareIndex !== -1 ? parts[shareIndex + 1] : null;
+    var id = shareIndex !== -1 ? parts[shareIndex + 2] : null;
+
+    if ((type === 'movie' || type === 'tv') && id) {
+      var tmdbUrl = 'https://www.themoviedb.org/' + type + '/' + id;
+      document.getElementById('fallback-link').href = tmdbUrl;
+      // Auto-redirect after a brief pause so the message is visible if the
+      // app-open attempt (handled by the OS before this page ever loads,
+      // when the app is installed) didn't happen.
+      setTimeout(function () { window.location.replace(tmdbUrl); }, 1200);
+    }
+  </script>
+</body>
+</html>
