@@ -11,367 +11,232 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
     :root {
-      --yellow: #F5C518;
-      --yellow-soft: rgba(245,197,24,0.12);
-      --bg: #0F0F0F;
-      --surface: #1A1A1A;
-      --border: #2A2A2A;
-      --text: #FFFFFF;
-      --muted: #9CA3AF;
-      --radius: 12px;
+      --yellow: #F5C518; --yellow-soft: rgba(245,197,24,.12);
+      --bg: #0B0C0E; --surface: #15171A; --surface2: #1C1F23; --border: #26292E;
+      --text: #fff; --muted: #9AA0A9; --radius: 18px;
     }
-
     html { scroll-behavior: smooth; }
-
-    body {
-      font-family: 'Inter', sans-serif;
-      background: var(--bg);
-      color: var(--text);
-      line-height: 1.6;
-    }
-
+    body { font-family: 'Inter', system-ui, sans-serif; background: var(--bg); color: var(--text); line-height: 1.6; overflow-x: hidden; -webkit-font-smoothing: antialiased; }
     a { color: var(--yellow); text-decoration: none; }
-    a:hover { text-decoration: underline; }
+    .wrap { max-width: 1120px; margin: 0 auto; padding: 0 24px; }
 
     /* NAV */
-    nav {
-      position: sticky;
-      top: 0;
-      z-index: 100;
-      background: rgba(15,15,15,0.92);
-      backdrop-filter: blur(12px);
-      border-bottom: 1px solid var(--border);
-    }
-    .nav-inner {
-      max-width: 1040px;
-      margin: 0 auto;
-      padding: 0 24px;
-      height: 60px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-    }
-    .nav-logo img {
-      height: 48px;
-      display: block;
-    }
-    .nav-links {
-      display: flex;
-      gap: 28px;
-      list-style: none;
-      font-size: 14px;
-      font-weight: 500;
-      color: var(--muted);
-    }
-    .nav-links a { color: var(--muted); }
-    .nav-links a:hover { color: var(--text); text-decoration: none; }
-
-    /* CONTAINER */
-    .container {
-      max-width: 860px;
-      margin: 0 auto;
-      padding: 0 24px;
-    }
+    nav { position: sticky; top: 0; z-index: 50; background: rgba(11,12,14,.75); backdrop-filter: blur(16px); border-bottom: 1px solid rgba(255,255,255,.06); }
+    .nav-inner { display: flex; align-items: center; justify-content: space-between; height: 68px; }
+    .nav-logo img { height: 44px; display: block; }
+    .nav-links { display: flex; gap: 28px; list-style: none; font-size: 14px; font-weight: 500; align-items: center; }
+    .nav-links a { color: var(--muted); transition: color .15s; }
+    .nav-links a:hover { color: var(--text); }
+    .nav-links .pill { color: #0B0C0E; background: var(--yellow); padding: 8px 18px; border-radius: 99px; font-weight: 700; }
+    .nav-links .pill:hover { color: #0B0C0E; filter: brightness(1.08); }
 
     /* HERO */
-    .hero {
-      padding: 96px 24px 80px;
-      max-width: 720px;
-      margin: 0 auto;
-      text-align: center;
-    }
-    .hero-eyebrow {
-      display: inline-block;
-      font-size: 11px;
-      font-weight: 700;
-      letter-spacing: 1.8px;
-      text-transform: uppercase;
-      color: var(--yellow);
-      margin-bottom: 20px;
-    }
-    .hero h1 {
-      font-size: clamp(36px, 6vw, 58px);
-      font-weight: 900;
-      line-height: 1.08;
-      letter-spacing: -1.5px;
-      margin-bottom: 22px;
-    }
-    .hero h1 span { color: var(--yellow); }
-    .hero p {
-      font-size: 18px;
-      color: var(--muted);
-      max-width: 540px;
-      margin: 0 auto 32px;
-      line-height: 1.65;
-    }
-    .badges {
-      display: flex;
-      gap: 10px;
-      justify-content: center;
-      flex-wrap: wrap;
-      margin-bottom: 40px;
-    }
-    .badge {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 100px;
-      padding: 6px 16px;
-      font-size: 13px;
-      font-weight: 600;
-      color: var(--muted);
-    }
-    .store-buttons {
-      display: flex;
-      gap: 14px;
-      justify-content: center;
-      flex-wrap: wrap;
-    }
-    .store-btn {
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      background: var(--yellow);
-      color: #0F1115;
-      border-radius: 10px;
-      padding: 12px 22px;
-      font-size: 14px;
-      font-weight: 700;
-      transition: opacity .15s;
-    }
-    .store-btn:hover { opacity: .85; text-decoration: none; }
-    .store-btn img { flex-shrink: 0; width: 18px; height: 18px; }
-    .store-btn-secondary img { filter: brightness(0) invert(1); }
-    .store-btn-secondary {
-      background: var(--surface);
-      color: var(--text);
-      border: 1px solid var(--border);
-    }
-    .store-btn-secondary:hover { border-color: var(--yellow); }
+    .hero { position: relative; padding: 88px 0 96px; }
+    .hero::before { content: ""; position: absolute; inset: -120px 0 auto; height: 720px; z-index: -1;
+      background: radial-gradient(60% 60% at 75% 30%, rgba(245,197,24,.16), transparent 70%), radial-gradient(40% 50% at 10% 10%, rgba(245,197,24,.06), transparent 70%); }
+    .hero-grid { display: grid; grid-template-columns: 1.1fr .9fr; gap: 56px; align-items: center; }
+    .eyebrow { display: inline-flex; align-items: center; gap: 8px; font-size: 12px; font-weight: 700; letter-spacing: 1.6px; text-transform: uppercase; color: var(--yellow); background: var(--yellow-soft); padding: 7px 14px; border-radius: 99px; margin-bottom: 24px; }
+    .eyebrow i { width: 6px; height: 6px; border-radius: 50%; background: var(--yellow); box-shadow: 0 0 10px var(--yellow); }
+    h1 { font-size: clamp(40px, 6.2vw, 72px); font-weight: 900; line-height: 1.03; letter-spacing: -2.4px; margin-bottom: 24px; }
+    h1 span { background: linear-gradient(100deg, #FFE27A, var(--yellow) 50%, #E5A800); -webkit-background-clip: text; background-clip: text; color: transparent; }
+    .lead { font-size: 19px; color: var(--muted); max-width: 520px; margin-bottom: 34px; }
+    .btns { display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 22px; }
+    .btn { display: inline-flex; align-items: center; gap: 10px; border-radius: 12px; padding: 14px 24px; font-size: 15px; font-weight: 700; transition: transform .15s, border-color .15s, filter .15s; }
+    .btn:hover { transform: translateY(-2px); }
+    .btn-primary { background: var(--yellow); color: #0B0C0E; box-shadow: 0 10px 30px -8px rgba(245,197,24,.5); }
+    .btn-primary:hover { filter: brightness(1.07); }
+    .btn-ghost { background: var(--surface); color: var(--text); border: 1px solid var(--border); }
+    .btn-ghost:hover { border-color: var(--yellow); }
+    .btn img { width: 18px; height: 18px; filter: brightness(0) invert(1); }
+    .tags { display: flex; gap: 8px; flex-wrap: wrap; }
+    .tag { font-size: 12.5px; font-weight: 600; color: var(--muted); border: 1px solid var(--border); border-radius: 99px; padding: 5px 13px; }
+    .note { font-size: 12.5px; color: #6B7280; margin-top: 14px; }
+
+    /* PHONE MOCK */
+    .phone-wrap { position: relative; display: flex; justify-content: center; }
+    .phone { width: 300px; background: #0E1013; border: 1px solid #2B2F35; border-radius: 42px; padding: 14px; box-shadow: 0 50px 100px -30px rgba(0,0,0,.9), 0 0 0 6px #14161A, 0 0 120px -20px rgba(245,197,24,.25); transform: rotate(3deg); animation: float 7s ease-in-out infinite; }
+    @keyframes float { 50% { transform: rotate(3deg) translateY(-12px); } }
+    .screen { background: var(--bg); border-radius: 30px; padding: 20px 16px 18px; min-height: 560px; }
+    .s-top { display: flex; justify-content: space-between; align-items: center; margin-bottom: 18px; }
+    .s-top b { font-size: 18px; font-weight: 800; letter-spacing: -.4px; }
+    .s-top em { font-style: normal; font-size: 11px; font-weight: 700; color: var(--yellow); background: var(--yellow-soft); padding: 4px 10px; border-radius: 99px; }
+    .s-label { font-size: 10px; font-weight: 700; letter-spacing: 1.4px; text-transform: uppercase; color: #6B7280; margin: 14px 0 10px; }
+    .chips { display: flex; gap: 6px; margin-bottom: 4px; }
+    .chip { font-size: 11px; font-weight: 600; padding: 5px 11px; border-radius: 99px; background: var(--surface2); color: var(--muted); }
+    .chip.on { background: var(--yellow); color: #0B0C0E; }
+    .item { display: flex; gap: 12px; background: var(--surface); border: 1px solid var(--border); border-radius: 14px; padding: 10px; margin-bottom: 10px; }
+    .poster { flex: none; width: 52px; height: 74px; border-radius: 8px; }
+    .p1 { background: linear-gradient(160deg, #F5C518, #7A3D00); }
+    .p2 { background: linear-gradient(160deg, #4F8CFF, #1A1F5C); }
+    .p3 { background: linear-gradient(160deg, #FF6B6B, #4A0F2E); }
+    .p4 { background: linear-gradient(160deg, #35D6A0, #0C3B3A); }
+    .meta { flex: 1; min-width: 0; display: flex; flex-direction: column; justify-content: center; }
+    .meta b { font-size: 13.5px; font-weight: 700; letter-spacing: -.2px; }
+    .meta small { font-size: 11px; color: var(--muted); margin-bottom: 8px; }
+    .bar { height: 5px; background: var(--surface2); border-radius: 9px; overflow: hidden; }
+    .bar i { display: block; height: 100%; background: var(--yellow); border-radius: 9px; }
+    .rate { align-self: flex-start; font-size: 11px; font-weight: 800; color: var(--yellow); }
+    .float-card { position: absolute; z-index: 2; background: rgba(28,31,35,.92); backdrop-filter: blur(10px); border: 1px solid var(--border); border-radius: 16px; padding: 12px 16px; box-shadow: 0 20px 50px -15px rgba(0,0,0,.8); font-size: 12px; color: var(--muted); }
+    .float-card b { display: block; font-size: 22px; font-weight: 900; color: var(--text); letter-spacing: -.6px; line-height: 1.1; }
+    .fc1 { left: -10px; top: 110px; } .fc2 { right: -14px; bottom: 90px; }
+
+    /* STATS STRIP */
+    .strip { border-block: 1px solid var(--border); background: linear-gradient(180deg, var(--surface), var(--bg)); }
+    .strip .wrap { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 24px; padding-block: 36px; text-align: center; }
+    .strip b { display: block; font-size: 30px; font-weight: 900; letter-spacing: -1px; color: var(--yellow); }
+    .strip span { font-size: 13.5px; color: var(--muted); }
 
     /* FEATURES */
-    .features {
-      padding: 20px 24px 80px;
-    }
-    .section-label {
-      text-align: center;
-      font-size: 11px;
-      font-weight: 700;
-      letter-spacing: 1.8px;
-      text-transform: uppercase;
-      color: var(--yellow);
-      margin-bottom: 12px;
-    }
-    .section-title {
-      text-align: center;
-      font-size: clamp(24px, 4vw, 32px);
-      font-weight: 800;
-      letter-spacing: -0.6px;
-      margin-bottom: 48px;
-    }
-    .features-grid {
-      max-width: 860px;
-      margin: 0 auto;
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-      gap: 18px;
-    }
-    .feature-card {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-left: 3px solid var(--yellow);
-      border-radius: var(--radius);
-      padding: 24px;
-    }
-    .feature-card h3 {
-      font-size: 16px;
-      font-weight: 700;
-      margin-bottom: 8px;
-      letter-spacing: -0.2px;
-    }
-    .feature-card p {
-      font-size: 14px;
-      color: var(--muted);
-      line-height: 1.6;
-    }
+    .features { padding: 110px 0 90px; }
+    .section-label { text-align: center; font-size: 12px; font-weight: 700; letter-spacing: 1.8px; text-transform: uppercase; color: var(--yellow); margin-bottom: 14px; }
+    .section-title { text-align: center; font-size: clamp(28px, 4.4vw, 46px); font-weight: 900; letter-spacing: -1.4px; line-height: 1.1; max-width: 720px; margin: 0 auto 56px; }
+    .grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+    .card { position: relative; background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 28px; overflow: hidden; transition: transform .2s, border-color .2s; }
+    .card::after { content: ""; position: absolute; inset: 0; background: radial-gradient(240px 160px at 0 0, rgba(245,197,24,.10), transparent 70%); opacity: 0; transition: opacity .25s; }
+    .card:hover { transform: translateY(-4px); border-color: rgba(245,197,24,.45); }
+    .card:hover::after { opacity: 1; }
+    .ico { width: 44px; height: 44px; border-radius: 12px; background: var(--yellow-soft); display: grid; place-items: center; margin-bottom: 18px; position: relative; z-index: 1; }
+    .ico svg { width: 22px; height: 22px; stroke: var(--yellow); fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+    .card h3 { position: relative; z-index: 1; font-size: 18px; font-weight: 800; letter-spacing: -.4px; margin-bottom: 8px; }
+    .card p { position: relative; z-index: 1; font-size: 14.5px; color: var(--muted); }
+
+    /* CTA */
+    .cta { padding: 0 0 100px; }
+    .cta-box { position: relative; overflow: hidden; text-align: center; padding: 72px 24px; border-radius: 28px; border: 1px solid rgba(245,197,24,.3); background: radial-gradient(70% 120% at 50% 0%, rgba(245,197,24,.18), transparent 70%), var(--surface); }
+    .cta-box h2 { font-size: clamp(28px, 4.4vw, 44px); font-weight: 900; letter-spacing: -1.4px; margin-bottom: 14px; }
+    .cta-box p { color: var(--muted); max-width: 480px; margin: 0 auto 30px; }
+    .cta-box .btns { justify-content: center; margin: 0; }
 
     /* TMDB */
-    .tmdb-section {
-      padding: 48px 24px;
-      border-top: 1px solid var(--border);
-      border-bottom: 1px solid var(--border);
-    }
-    .tmdb-inner {
-      max-width: 680px;
-      margin: 0 auto;
-      display: flex;
-      align-items: flex-start;
-      gap: 20px;
-    }
-    .tmdb-logo {
-      flex-shrink: 0;
-      width: 52px;
-      height: 52px;
-      background: #01B4E4;
-      border-radius: 10px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 12px;
-      font-weight: 900;
-      color: #fff;
-      letter-spacing: -0.5px;
-    }
-    .tmdb-text h3 {
-      font-size: 15px;
-      font-weight: 700;
-      margin-bottom: 6px;
-    }
-    .tmdb-text p {
-      font-size: 14px;
-      color: var(--muted);
-      line-height: 1.6;
-    }
+    .tmdb { padding: 44px 0; border-top: 1px solid var(--border); }
+    .tmdb-inner { max-width: 720px; margin: 0 auto; display: flex; gap: 20px; align-items: flex-start; }
+    .tmdb-logo { flex: none; width: 52px; height: 52px; background: #01B4E4; border-radius: 12px; display: grid; place-items: center; font-size: 12px; font-weight: 900; }
+    .tmdb h3 { font-size: 15px; font-weight: 700; margin-bottom: 6px; }
+    .tmdb p { font-size: 13.5px; color: var(--muted); }
 
     /* FOOTER */
-    footer {
-      padding: 48px 24px;
-      text-align: center;
+    footer { border-top: 1px solid var(--border); padding: 48px 0; text-align: center; }
+    footer img { height: 44px; opacity: .75; margin-bottom: 14px; }
+    footer p { font-size: 14px; color: var(--muted); margin-bottom: 16px; }
+    .footer-links { display: flex; gap: 24px; justify-content: center; flex-wrap: wrap; font-size: 13.5px; margin-bottom: 18px; }
+    .footer-links a { color: var(--muted); } .footer-links a:hover { color: var(--text); }
+    .copy { font-size: 12px; color: #5B6270; }
+
+    /* REVEAL */
+    .rv { opacity: 0; transform: translateY(24px); transition: opacity .7s ease, transform .7s ease; }
+    .rv.in { opacity: 1; transform: none; }
+    @media (prefers-reduced-motion: reduce) { .rv { opacity: 1; transform: none; transition: none; } .phone { animation: none; } html { scroll-behavior: auto; } }
+
+    @media (max-width: 900px) {
+      .hero { padding: 48px 0 64px; } .hero-grid { grid-template-columns: 1fr; gap: 64px; }
+      .grid { grid-template-columns: repeat(2, 1fr); } .fc1 { left: 0; } .fc2 { right: 0; }
     }
-    .footer-logo img {
-      height: 48px;
-      margin: 0 auto 16px;
-      display: block;
-      opacity: 0.7;
-    }
-    .footer-tagline {
-      font-size: 14px;
-      color: var(--muted);
-      margin-bottom: 16px;
-    }
-    .footer-links {
-      display: flex;
-      gap: 20px;
-      justify-content: center;
-      flex-wrap: wrap;
-      margin-bottom: 20px;
-      font-size: 13px;
-    }
-    .footer-links a { color: var(--muted); }
-    .footer-links a:hover { color: var(--text); text-decoration: none; }
-    .footer-copy {
-      font-size: 12px;
-      color: #555;
+    @media (max-width: 600px) {
+      .grid { grid-template-columns: 1fr; } .nav-links li:not(:last-child) { display: none; }
+      .btn { width: 100%; justify-content: center; } .phone { width: 270px; } .float-card { display: none; }
     }
   </style>
 </head>
 <body>
 
-  <!-- NAV -->
   <nav>
-    <div class="nav-inner">
-      <a class="nav-logo" href="index.html">
-        <img src="assets/images/watchlog-wordmark-dark.png" alt="WatchLog" />
-      </a>
+    <div class="wrap nav-inner">
+      <a class="nav-logo" href="index.html"><img src="assets/images/watchlog-wordmark-dark.png" alt="WatchLog" /></a>
       <ul class="nav-links">
+        <li><a href="#features">Features</a></li>
         <li><a href="privacy.html">Privacy</a></li>
         <li><a href="terms.html">Terms</a></li>
-        <!-- <li><a href="mailto:info@virstack.com">Contact</a></li> -->
-        <li><a href="mailto:info@xcorpion.xyz">Contact</a></li>
+        <li><a class="pill" href="#download">Download</a></li>
       </ul>
     </div>
   </nav>
 
-  <!-- HERO -->
-  <section class="hero">
-    <span class="hero-eyebrow">Movies &amp; TV Shows</span>
-    <h1>Track every show.<br /><span>Never lose your place.</span></h1>
-    <p>WatchLog lets you log movies and TV shows, track episodes, rate what you watch, and discover what to watch next — all without ads or selling your data.</p>
-    <div class="badges">
-      <span class="badge">Free to start</span>
-      <span class="badge">Privacy-first</span>
-      <span class="badge">Beta</span>
-    </div>
-    <div class="store-buttons">
-      <!-- App Store build isn't ready yet; hidden until then.
-      <a href="#" class="store-btn">
-        <img src="assets/images/apple-logo-svgrepo-com.svg" alt="" />
-        App Store
-      </a>
-      -->
-      <a href="#" class="store-btn store-btn-secondary">
-        <img src="assets/images/play-store-svgrepo-com.svg" alt="" />
-        Google Play
-      </a>
-      <a href="assets/apks/watchlog-1.0.0.apk" class="store-btn store-btn-secondary" download>
-        Download APK (v1.0.0 Beta - will be removed soon)
-      </a>
-      <a href="assets/apks/watchlog-new-design.apk" class="store-btn store-btn-secondary" download>
-        Download APK (New design Beta)
-      </a>
-    </div>
-  </section>
+  <header class="hero">
+    <div class="wrap hero-grid">
+      <div class="rv">
+        <span class="eyebrow"><i></i> Movies &amp; TV Shows</span>
+        <h1>Track every show.<br /><span>Never lose your place.</span></h1>
+        <p class="lead">Log movies and series, follow every episode, rate what you watch, and find what's next — with no ads and no selling your data.</p>
+        <div class="btns" id="download">
+          <a href="assets/apks/watchlog-new-design.apk" class="btn btn-primary" download>Download for Android</a>
+          <a href="#" class="btn btn-ghost"><img src="assets/images/play-store-svgrepo-com.svg" alt="" />Google Play</a>
+        </div>
+        <div class="tags"><span class="tag">Free to start</span><span class="tag">Privacy-first</span><span class="tag">Beta</span></div>
+        <!-- App Store build isn't ready yet; hidden until then.
+        <a href="#" class="btn btn-ghost"><img src="assets/images/apple-logo-svgrepo-com.svg" alt="" />App Store</a> -->
+      </div>
 
-  <!-- FEATURES -->
-  <section class="features">
-    <p class="section-label">Features</p>
-    <h2 class="section-title">Everything you need to track your watchlist</h2>
-    <div class="features-grid">
-      <div class="feature-card">
-        <h3>Watchlist management</h3>
-        <p>Organise titles into statuses — Watching, Completed, Plan to Watch, On Hold, or Dropped. Always know where you stand.</p>
+      <div class="phone-wrap rv" aria-hidden="true">
+        <div class="float-card fc1"><b>128</b>episodes watched</div>
+        <div class="float-card fc2"><b>9.2 ★</b>your top rating</div>
+        <div class="phone"><div class="screen">
+          <div class="s-top"><b>My Watchlist</b><em>Beta</em></div>
+          <div class="chips"><span class="chip on">Watching</span><span class="chip">Plan</span><span class="chip">Done</span></div>
+          <div class="s-label">Continue watching</div>
+          <div class="item"><div class="poster p1"></div><div class="meta"><b>Midnight Harbor</b><small>S2 · E6 of 10</small><div class="bar"><i style="width:60%"></i></div></div></div>
+          <div class="item"><div class="poster p2"></div><div class="meta"><b>Orbit Lines</b><small>S1 · E3 of 8</small><div class="bar"><i style="width:38%"></i></div></div></div>
+          <div class="item"><div class="poster p3"></div><div class="meta"><b>The Last Reel</b><small>S4 · E9 of 12</small><div class="bar"><i style="width:75%"></i></div></div></div>
+          <div class="s-label">Recently rated</div>
+          <div class="item"><div class="poster p4"></div><div class="meta"><b>Glass Garden</b><small>Movie · 2024</small></div><span class="rate">9.0 ★</span></div>
+        </div></div>
       </div>
-      <div class="feature-card">
-        <h3>Episode-level progress</h3>
-        <p>Track exactly which seasons and episodes you've seen for every TV show. Pick up right where you left off.</p>
-      </div>
-      <div class="feature-card">
-        <h3>Ratings &amp; reviews</h3>
-        <p>Score any title on a numeric scale and write a short review. Build a personal record of everything you've watched.</p>
-      </div>
-      <div class="feature-card">
-        <h3>Personalised recommendations</h3>
-        <p>Set your favourite genres and languages. WatchLog suggests titles matched to your taste, not a generic trending list.</p>
-      </div>
-      <div class="feature-card">
-        <h3>Watch history &amp; stats</h3>
-        <p>Timestamped viewing logs, progress percentages, and viewing statistics — see how much you've actually watched.</p>
-      </div>
-      <div class="feature-card">
-        <h3>Search &amp; discover</h3>
-        <p>Instantly search millions of movies and shows from the TMDB catalogue and browse what's trending right now.</p>
+    </div>
+  </header>
+
+  <div class="strip"><div class="wrap">
+    <div><b>Millions</b><span>of titles from TMDB</span></div>
+    <div><b>Episode-level</b><span>progress tracking</span></div>
+    <div><b>0 ads</b><span>and your data is never sold</span></div>
+    <div><b>Sync</b><span>across your devices</span></div>
+  </div></div>
+
+  <section class="features" id="features">
+    <div class="wrap">
+      <p class="section-label">Features</p>
+      <h2 class="section-title">Everything you need to keep your watchlist in order</h2>
+      <div class="grid">
+        <div class="card rv"><div class="ico"><svg viewBox="0 0 24 24"><path d="M4 6h16M4 12h16M4 18h10"/></svg></div><h3>Watchlist management</h3><p>Organise titles into Watching, Completed, Plan to Watch, On Hold or Dropped. Always know where you stand.</p></div>
+        <div class="card rv"><div class="ico"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M10 9.5l5 2.5-5 2.5z"/></svg></div><h3>Episode-level progress</h3><p>Track exactly which seasons and episodes you've seen. Pick up right where you left off.</p></div>
+        <div class="card rv"><div class="ico"><svg viewBox="0 0 24 24"><path d="M12 3l2.7 5.6 6.1.9-4.4 4.3 1 6.1L12 17l-5.4 2.9 1-6.1L3.2 9.5l6.1-.9z"/></svg></div><h3>Ratings &amp; reviews</h3><p>Score any title and write a short review. Build a personal record of everything you've watched.</p></div>
+        <div class="card rv"><div class="ico"><svg viewBox="0 0 24 24"><path d="M12 21s-7-4.4-7-10a4 4 0 017-2.6A4 4 0 0119 11c0 5.6-7 10-7 10z"/></svg></div><h3>Personalised picks</h3><p>Choose favourite genres and languages. WatchLog suggests titles matched to your taste, not a generic trending list.</p></div>
+        <div class="card rv"><div class="ico"><svg viewBox="0 0 24 24"><path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/></svg></div><h3>History &amp; stats</h3><p>Timestamped viewing logs, progress percentages and statistics — see how much you've actually watched.</p></div>
+        <div class="card rv"><div class="ico"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg></div><h3>Search &amp; discover</h3><p>Instantly search millions of movies and shows from the TMDB catalogue and browse what's trending.</p></div>
       </div>
     </div>
   </section>
 
-  <!-- TMDB -->
-  <section class="tmdb-section">
-    <div class="tmdb-inner">
-      <div class="tmdb-logo">TMDB</div>
-      <div class="tmdb-text">
-        <h3>Powered by The Movie Database</h3>
-        <p>WatchLog uses the TMDB API to provide accurate metadata, posters, cast information, and episode data for millions of movies and TV shows. This product uses the TMDB API but is not endorsed or certified by TMDB.</p>
-      </div>
+  <section class="cta"><div class="wrap">
+    <div class="cta-box rv">
+      <h2>Start logging tonight.</h2>
+      <p>Free to start, private by design. Grab the Android beta and never lose your place again.</p>
+      <div class="btns"><a href="assets/apks/watchlog-new-design.apk" class="btn btn-primary" download>Download for Android</a></div>
     </div>
-  </section>
+  </div></section>
 
-  <!-- FOOTER -->
-  <footer>
-    <div class="footer-logo">
-      <img src="assets/images/watchlog-wordmark-dark.png" alt="WatchLog" />
-    </div>
-    <!-- <p class="footer-tagline">WatchLog is made by Virstack, an independent software studio.</p> -->
-    <p class="footer-tagline">WatchLog is made by Xcorpion, an independent software studio.</p>
+  <section class="tmdb"><div class="wrap"><div class="tmdb-inner">
+    <div class="tmdb-logo">TMDB</div>
+    <div><h3>Powered by The Movie Database</h3>
+    <p>WatchLog uses the TMDB API to provide metadata, posters, cast information and episode data. This product uses the TMDB API but is not endorsed or certified by TMDB.</p></div>
+  </div></div></section>
+
+  <footer><div class="wrap">
+    <img src="assets/images/watchlog-wordmark-dark.png" alt="WatchLog" />
+    <p>WatchLog is made by Xcorpion, an independent software studio.</p>
     <div class="footer-links">
       <a href="privacy.html">Privacy Policy</a>
       <a href="terms.html">Terms of Service</a>
-      <!-- <a href="mailto:info@virstack.com">info@virstack.com</a> -->
       <a href="mailto:info@xcorpion.xyz">info@xcorpion.xyz</a>
     </div>
-    <!-- <p class="footer-copy">© 2026 Virstack · WatchLog</p> -->
-    <p class="footer-copy">© 2026 Xcorpion · WatchLog</p>
-  </footer>
+    <p class="copy">© 2026 Xcorpion · WatchLog</p>
+  </div></footer>
 
+  <script>
+    const els = document.querySelectorAll('.rv');
+    if ('IntersectionObserver' in window) {
+      const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } }), { threshold: .12 });
+      els.forEach((el, i) => { el.style.transitionDelay = (i % 3) * 80 + 'ms'; io.observe(el); });
+    } else els.forEach(el => el.classList.add('in'));
+  </script>
 </body>
 </html>
